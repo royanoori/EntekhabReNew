@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #0eb4c4;
+  --color-secondary: #faae2e;
+  --color-tertiary: #08234f;
+  --default-font-family: "Vazirmatn";
+}
