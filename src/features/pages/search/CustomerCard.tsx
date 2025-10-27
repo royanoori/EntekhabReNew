@@ -1,6 +1,6 @@
 "use client";
 import { ContactInfo } from "@/features/type/type";
-import { Box, Typography } from "@mui/material";
+import { Box, MenuItem, Typography } from "@mui/material";
 import { useState } from "react";
 import { FaUserLarge } from "react-icons/fa6";
 import UserDetailDialog from "./CustomerDetailDialog";
@@ -14,20 +14,16 @@ function CustomerCard({ user }: userprops) {
 
   return (
     <>
-      <Box
-        className="w-full h-full p-2"
-        key={user.ContactId}
-        onClick={() => setOpen(true)}
-      >
-        <div>
+      <MenuItem key={user.ContactId} onClick={() => setOpen(true)}>
+        <div className="w-full">
           <div className="flex items-center mb-2">
             <div className="flex-1 flex items-center gap-2 ">
-              <div className="rounded-full w-fit border dark:border-neutral-700 p-1.5 dark:text-neutral-700 text-gray-300 border-gray-300">
+              <div className="rounded-full w-fit border p-1.5 text-gray-300 border-gray-300">
                 <FaUserLarge />
               </div>
               <div className="flex flex-col gap-1">
                 <Typography variant="subtitle2" className="text-nowrap">
-                  {user.Salutation === "زن" ? "خانم" : "آقای"} {user.FirstName}{" "}
+                  {user.Gender === 1 ? "خانم" : "آقای"} {user.FirstName}{" "}
                   {user.LastName}
                 </Typography>
               </div>
@@ -40,12 +36,15 @@ function CustomerCard({ user }: userprops) {
               </div>
             )}
           </div>
-          <Typography variant="caption" color="textSecondary" className="!mt-3">
+          <Typography
+            variant="caption"
+            className="!mt-3 text-gray-500 w-full text-wrap"
+          >
             استان: {user.ProvinceName} | شهر: {user.CityName} | منطقه:{" "}
-            {user.AreaName} | آدرس: {user.Address}
+            {user.RegionName} | آدرس: {user.Address}
           </Typography>
         </div>
-      </Box>
+      </MenuItem>
 
       <UserDetailDialog
         open={open}

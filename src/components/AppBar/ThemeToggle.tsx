@@ -16,7 +16,7 @@ export default function ThemeToggle() {
       className="cursor-pointer"
     >
       {mode === "light" ? (
-        <MdOutlineDarkMode className="text-gray-500" size={23} />
+        <MdOutlineDarkMode className="text-gray-800" size={23} />
       ) : (
         <MdLightMode className="text-yellow-500" size={23} />
       )}

@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import { getContactInfo } from "../api/api";
+import { getContactsByMobile } from "../api/api";
 import { ContactInfo } from "../type/type";
 
-export const useGetContactInfo = (
+export const useGetContactsByMobile = (
   mobile: string,
   options?: { enabled?: boolean }
 ) => {
   return useQuery<ContactInfo[], Error>({
-    queryKey: ["getContactInfo", mobile],
-    queryFn: () => getContactInfo(mobile),
-    enabled: !!mobile, // وقتی مقدار موبایل وجود دارد اجرا شود
+    queryKey: ["getContactsByMobile", mobile],
+    queryFn: () => getContactsByMobile(mobile),
+    enabled: !!mobile,
     ...options,
   });
 };
