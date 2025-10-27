@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import themeReducer from "./slices/themeSlice";
+import customerReducer from "@/features/store/customerSlice";
+import productListReducer from "@/features/store/productListSlice";
 
 export const store = configureStore({
   reducer: {
     theme: themeReducer,
+    customer: customerReducer,
+    productList: productListReducer, // <-- اضافه شد
   },
 });
 

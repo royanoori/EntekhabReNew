@@ -1,8 +1,8 @@
 export const themes = {
   light: {
     colors: {
-      primary: "#0eb4c4",
-      secondary: "#FAAE2E",
+      primary: "#1446aa",
+      secondary: "#ec8d1f",
       background: "#f5f5f5",
       text: "#333333",
       paper: "#ffff",
@@ -10,11 +10,11 @@ export const themes = {
   },
   dark: {
     colors: {
-      primary: "#0eb4c4",
-      secondary: "#FAAE2E",
-      background: "#292929",
-      text: "#ffffff",
-      paper: "#121212",
+      primary: "#1446aa",
+      secondary: "#ec8d1f",
+      background: "#08234f",
+      text: "#333333",
+      paper: "#ffff",
     },
   },
   font: {
