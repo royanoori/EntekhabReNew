@@ -5,13 +5,11 @@ import ProductTable from "./ProductTable";
 
 function ProductStep() {
   return (
-    <Box className="w-full h-full flex flex-col">
+    <Box className="w-full h-full flex flex-col p-4">
       <header>
         <FormAddProduct />
       </header>
-      <main className="flex-1">
-        <ProductTable />
-      </main>
+      <ProductTable />
     </Box>
   );
 }

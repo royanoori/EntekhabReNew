@@ -42,11 +42,11 @@ function ThemeWrapper({ children }: { children: ReactNode }) {
   }
 
   const theme = createMuiTheme(mode, 14);
-
+  theme.direction = "rtl";
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      {children}
+      <div dir="rtl">{children}</div>
     </MuiThemeProvider>
   );
 }
@@ -55,13 +55,13 @@ export default function AppProviders({ children }: ProvidersProps) {
   const cacheRtl = createRtlCache();
   return (
     <Provider store={store}>
-      <CacheProvider value={cacheRtl}>
-        <ThemeWrapper>
-          <QueryClientProvider client={queryClient}>
-            <SnackbarProvider>{children}</SnackbarProvider>
-          </QueryClientProvider>
-        </ThemeWrapper>
-      </CacheProvider>
+      <QueryClientProvider client={queryClient}>
+        <SnackbarProvider>
+          <CacheProvider value={cacheRtl}>
+            <ThemeWrapper>{children}</ThemeWrapper>
+          </CacheProvider>
+        </SnackbarProvider>
+      </QueryClientProvider>
     </Provider>
   );
 }

@@ -14,11 +14,11 @@ export type CustomerFormData = {
   postalCode?: string | null;
 
   // اطلاعات محصول - الزامی
-  brand: string;
-  product: string;
-  lifetime: string;
-  status: string;
-  parts: string;
+  Brand: string;
+  Product: string;
+  ProductLife: string;
+  ProductionConditions: string;
+  AccessoryConditions: string;
 };
 
 export const customerSchema = z.object({
@@ -38,9 +38,9 @@ export const customerSchema = z.object({
   postalCode: z.string().optional().nullable(),
 
   // اطلاعات محصول - الزامی
-  brand: z.string().nonempty("انتخاب برند الزامی است"),
-  product: z.string().nonempty("انتخاب محصول الزامی است"),
-  lifetime: z.string().nonempty("انتخاب عمر الزامی است"),
-  status: z.string().nonempty("انتخاب وضعیت الزامی است"),
-  parts: z.string().nonempty("انتخاب قطعه الزامی است"),
+  Brand: z.string().nonempty("انتخاب برند الزامی است"),
+  Product: z.string().nonempty("انتخاب محصول الزامی است"),
+  ProductLife: z.string().nonempty("انتخاب عمر الزامی است"),
+  ProductionConditions: z.string().nonempty("انتخاب وضعیت الزامی است"),
+  AccessoryConditions: z.string().nonempty("انتخاب قطعه الزامی است"),
 });

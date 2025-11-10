@@ -3,7 +3,7 @@ export const themes = {
     colors: {
       primary: "#1446aa",
       secondary: "#ec8d1f",
-      background: "#f5f5f5",
+      background: "#ffff",
       text: "#333333",
       paper: "#ffff",
     },
@@ -12,7 +12,7 @@ export const themes = {
     colors: {
       primary: "#1446aa",
       secondary: "#ec8d1f",
-      background: "#08234f",
+      background: "#1f2020",
       text: "#333333",
       paper: "#ffff",
     },
