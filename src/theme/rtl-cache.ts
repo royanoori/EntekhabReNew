@@ -1,4 +1,3 @@
-
 "use client";
 
 import createCache from "@emotion/cache";
@@ -7,8 +6,9 @@ import { prefixer } from "stylis";
 
 const createRtlCache = () =>
   createCache({
-    key: "mui-rtl",
+    key: "mui-rtl", // کلید cache برای RTL
     stylisPlugins: [prefixer, rtlPlugin],
+    prepend: true, // این باعث میشه استایل‌های MUI بالاتر از بقیه قرار بگیرن
   });
 
 export default createRtlCache;

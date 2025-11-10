@@ -90,8 +90,9 @@ const CustomerInfoStep = () => {
 
   return (
     <div className="flex flex-col gap-y-8 gap-x-3 p-4">
-      <div className="grid lg:grid-cols-5 grid-cols-2 md:grid-cols-3 gap-y-8 gap-x-3">
+      <div className="grid lg:grid-cols-3 grid-cols-1 md:grid-cols-3 lg:gap-y-10 gap-y-5 gap-x-3">
         <TextField
+          required
           {...register("firstName")}
           label="نام"
           variant="outlined"
@@ -101,6 +102,7 @@ const CustomerInfoStep = () => {
           helperText={errors.firstName?.message ?? ""}
         />
         <TextField
+          required
           {...register("lastName")}
           label="نام خانوادگی"
           variant="outlined"
@@ -119,6 +121,7 @@ const CustomerInfoStep = () => {
           helperText={errors.nationalCode?.message ?? ""}
         />
         <TextField
+          required
           {...register("mobile")}
           label="شماره موبایل"
           variant="outlined"

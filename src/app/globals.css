@@ -1,3 +1,10 @@
 @import "../theme/tailwindTheme.css";
 @import "../styles/Vazirmatn-font-face.css";
 @import "../styles/Vazirmatn-FD-NL-font-face.css";
+
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+  box-shadow: 0 0 0 30px rgba(255, 255, 255, 0) inset !important; /* رنگ پس‌زمینه جدید */
+
+  transition: background-color 5000s ease-in-out 0s; /* جلوگیری از تغییر ناگهانی رنگ */
+}

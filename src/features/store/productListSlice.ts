@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // نوع داده‌ی هر محصول در لیست
 export interface ProductItem {
-  brandId: string;
-  brandName: string;
-  productId: string;
-  productName: string;
-  lifetime: string;
-  status: string;
-  parts: string;
+  Brand: string;
+  BrandName: string;
+  Product: string;
+  ProductName: string;
+  ProductLife: string;
+  ProductionConditions: string;
+  AccessoryConditions: string;
 }
 
 // استیت کلی

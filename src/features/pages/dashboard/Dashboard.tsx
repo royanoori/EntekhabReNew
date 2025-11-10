@@ -1,7 +1,5 @@
 import Slider from "@/components/Slider";
 import Search from "../search/Search";
-import UserWidget from "../User/UserWidget";
-import Widget from "./Widget";
 
 function Dashboard() {
   return (

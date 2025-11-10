@@ -1,29 +1,30 @@
+"use client";
+import { RootState } from "@/store/store";
 import Image from "next/image";
-import ThemeToggle from "./ThemeToggle";
 import { IoNotifications } from "react-icons/io5";
-import { Button } from "@mui/material";
-import Search from "@/features/pages/search/Search";
+import { PiUserDuotone } from "react-icons/pi";
+import { useSelector } from "react-redux";
+import ThemeToggle from "./ThemeToggle";
 
 function AppBarHeader() {
+  const mode = useSelector((state: RootState) => state.theme.mode);
   return (
-    <>
-      <div className="w-full flex items-center justify-between h-14 dark:bg-gray-200 px-2 py-4 rounded-md">
+    <div className="w-full flex items-center justify-between h-14">
+      <div className="relative lg:w-32 w-24 h-12">
         <Image
           alt="logo"
-          src="/Logo.svg"
-          width={100}
-          height={100}
-          className="h-full lg:w-32 sm:w-22 w-20"
+          src={mode === "dark" ? "/LogoWhite.svg" : "/Logo.svg"}
+          fill
+          className="object-contain"
         />
-        <div className="flex gap-2 items-center">
-          <Button variant="outlined" color="primary">
-            بازگشت به انتخاب سرویس
-          </Button>
-          <IoNotifications className="text-blue-950 " size={23} />
-          <ThemeToggle />
-        </div>
       </div>
-    </>
+
+      <div className="flex gap-2 items-center">
+        <ThemeToggle />
+        <IoNotifications className="text-gray-600 dark:text-white" size={20} />
+        <PiUserDuotone className="text-gray-600 dark:text-white" size={20} />
+      </div>
+    </div>
   );
 }
 
