@@ -47,6 +47,7 @@ const FormAddProduct = () => {
       (b: Brand) => b.Id.toString() === values.Brand
     ) ?? {
       Id: "",
+      CrmId: "",
       Name: "",
     };
 
@@ -54,14 +55,17 @@ const FormAddProduct = () => {
       (p: Product) => p.Id.toString() === values.Product
     ) ?? {
       Id: "",
+      CrmId: "",
       Name: "",
     };
 
     // ✅ ساخت آبجکت نهایی برای dispatch
     const valuesObj = {
-      Brand: brandObj.Id.toString(),
+      BrandId: brandObj.Id.toString(),
+      BrandCrmId: brandObj.CrmId.toString(),
       BrandName: brandObj.Name,
-      Product: productObj.Id.toString(),
+      ProductId: productObj.Id.toString(),
+      ProductCrmId: productObj.CrmId.toString(),
       ProductName: productObj.Name,
       ProductLife: values.ProductLife ?? "",
       ProductionConditions: values.ProductionConditions ?? "",

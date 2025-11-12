@@ -48,3 +48,44 @@ export interface Product {
   CrmId: string;
   Name: string;
 }
+
+export interface CustomerData {
+  ContactId: string;
+  FirstName: string | null;
+  LastName: string | null;
+  Mobile: string | null;
+  NationalCode: string | null;
+  RegionId: string | null;
+  Gender: number | null;
+  Address: string | null;
+  PostalCode: string | null;
+}
+
+export interface TCreateContact {
+  ContactId: string;
+  FirstName: string;
+  LastName: string;
+  Gender: number; // 0=مرد، 1=زن (طبق API شما)
+  PersonType: number;
+  LegalPersonName: string;
+  NationalCode: string;
+  Phone: string;
+  Mobile: string;
+  RegionId: string;
+  Latitude: number;
+  Longitude: number;
+  Address: string;
+  BirthDate: string; // ISO string (مثل: "2025-11-11T05:11:37.390Z")
+  PostalCode: string;
+}
+
+export interface TProductRequest {
+  ContactId: string;
+  Product: string;
+  Brand: string;
+  ProductLife: number;
+  ProductionConditions: number;
+  AccessoryConditions: number;
+  DesiredPrice: number;
+}
+export type TProductRequestList = TProductRequest[];

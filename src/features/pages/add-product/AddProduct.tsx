@@ -11,15 +11,48 @@ import Stepper from "@mui/material/Stepper";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CustomerFormData, customerSchema } from "./formSchema";
 import CustomerInfoStep from "./steps/CustomerInfoStep";
 import FinalStep from "./steps/FinalStep";
 import ProductStep from "./steps/ProductStep";
+import { setCustomer, updateContactId } from "@/features/store/customerSlice";
+import { useCreateWebContact } from "@/features/hooks/useCreateWebContact";
+import { useCreateUsedProductPurchaseNew } from "@/features/hooks/useCreateUsedProductPurchaseNew";
+import { TProductRequestList } from "@/features/type/type";
 
 export default function AddProduct() {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const { mutate: submitContact, isPending } = useCreateWebContact({
+    onSuccess: (contactId) => {
+      if (user.selectedCustomer) {
+        dispatch(updateContactId(contactId));
+        showMessage("کاربر با موفقیت ثبت شد", "success");
+        router.replace("/dashboard");
+      }
+    },
+    onError: (error) => {
+      showMessage(error.message, "error");
+    },
+  });
+  const { mutate: submitProduct, isPending: isPendingProduct } =
+    useCreateUsedProductPurchaseNew({
+      onSuccess: (code) => {
+        if (user.selectedCustomer) {
+          showMessage(
+            `محصولات در سامانه با کد پیگیری ${code} درج شد `,
+            "success"
+          );
+          router.replace("/dashboard");
+        }
+      },
+      onError: (error) => {
+        showMessage(error.message, "error");
+      },
+    });
   const user = useSelector((state: RootState) => state.customer);
+  const prosucts = useSelector((state: RootState) => state.productList);
   useEffect(() => {
     if (!user || !user.selectedCustomer?.Mobile) {
       router.replace("/dashboard");
@@ -70,8 +103,8 @@ export default function AddProduct() {
       "ProductLife",
       "ProductionConditions",
       "AccessoryConditions",
-    ], // مرحله 1
-    [], // مرحله 2
+    ],
+    [],
   ];
 
   const handleStepChange = (nextStep: number) => {
@@ -92,7 +125,23 @@ export default function AddProduct() {
       const valid = await methods.trigger(stepFields[activeStep]);
       if (!valid) return;
     }
+    if (activeStep === 0) {
+      const allCustomerFields = methods.getValues();
 
+      // dispatch(
+      //   setCustomer({
+      //     ContactId: "",
+      //     FirstName: allCustomerFields.firstName,
+      //     LastName: allCustomerFields.lastName,
+      //     Mobile: allCustomerFields.mobile,
+      //     NationalCode: allCustomerFields.nationalCode,
+      //     RegionId: allCustomerFields.region,
+      //     Gender: allCustomerFields.gender === "مرد" ? 1 : 0,
+      //     Address: allCustomerFields.address,
+      //     PostalCode: allCustomerFields.postalCode,
+      //   })
+      // );
+    }
     handleStepChange(activeStep + 1);
   };
 
@@ -101,7 +150,7 @@ export default function AddProduct() {
       showMessage("لطفاً حداقل یک محصول اضافه کنید", "error");
       return;
     }
-
+    console.log(user.selectedCustomer);
     setOpenSubmit(true);
   };
   const handleBack = () => {
@@ -109,7 +158,25 @@ export default function AddProduct() {
   };
 
   const handleConfirmSubmit = () => {
-    setOpenSubmit(false);
+    if (user.selectedCustomer && user.selectedCustomer.ContactId === "") {
+      submitContact(user.selectedCustomer);
+    }
+    if (user.selectedCustomer?.ContactId) {
+      const payload: TProductRequestList = ProductList.map((p) => ({
+        ContactId: user.selectedCustomer!.ContactId,
+        Product: p.ProductCrmId,
+        Brand: p.BrandCrmId,
+        ProductLife: Number(p.ProductLife),
+        ProductionConditions: Number(p.ProductionConditions),
+        AccessoryConditions: Number(p.AccessoryConditions),
+        DesiredPrice: 0,
+      }));
+
+      submitProduct(payload);
+    }
+    if (!isPendingProduct) {
+      setOpenSubmit(false);
+    }
   };
   const setCancel = () => {
     setCloseForm(true);
@@ -185,6 +252,7 @@ export default function AddProduct() {
             <Button
               type="button"
               color="primary"
+              loading={isPending}
               variant="contained"
               onClick={finall}
             >

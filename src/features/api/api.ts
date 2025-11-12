@@ -7,6 +7,8 @@ import {
   Product,
   Province,
   Region,
+  TCreateContact,
+  TProductRequestList,
 } from "../type/type";
 
 export const getContactsByMobile = async (
@@ -85,6 +87,36 @@ export const getBrandProducts = async (brandId: string): Promise<Product[]> => {
     {
       params: { brandId },
     }
+  );
+
+  if (!res.data.IsSuccess) {
+    throw new Error(res.data.Message || "خطای ناشناخته");
+  }
+
+  return res.data.Data;
+};
+
+export const createWebContact = async (
+  data: TCreateContact
+): Promise<string> => {
+  const res = await axiosInstance.post<ApiResponse<string>>(
+    "/createWebContact",
+    data
+  );
+
+  if (!res.data.IsSuccess) {
+    throw new Error(res.data.Message || "خطای ناشناخته");
+  }
+
+  return res.data.Data;
+};
+
+export const createUsedProductPurchaseNew = async (
+  data: TProductRequestList
+): Promise<string> => {
+  const res = await axiosInstance.post<ApiResponse<string>>(
+    "/createUsedProductPurchaseNew",
+    data
   );
 
   if (!res.data.IsSuccess) {

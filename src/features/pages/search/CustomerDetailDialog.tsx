@@ -121,7 +121,19 @@ function CustomerDetailDialog({
               color="primary"
               className="!text-white"
               onClick={() => {
-                dispatch(setCustomer(customer)); // ذخیره در Redux
+                dispatch(
+                  setCustomer({
+                    ContactId: customer.ContactId,
+                    FirstName: customer.FirstName,
+                    LastName: customer.LastName,
+                    Mobile: customer.Mobile,
+                    NationalCode: customer.NationalCode,
+                    RegionId: customer.RegionId,
+                    Gender: customer.Gender,
+                    Address: customer.Address,
+                    PostalCode: customer.PostalCode,
+                  })
+                );
                 onClose();
               }}
             >
