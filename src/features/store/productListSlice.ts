@@ -2,9 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // نوع داده‌ی هر محصول در لیست
 export interface ProductItem {
-  Brand: string;
+  BrandId: string;
+  BrandCrmId: string;
   BrandName: string;
-  Product: string;
+  ProductId: string;
+  ProductCrmId: string;
   ProductName: string;
   ProductLife: string;
   ProductionConditions: string;

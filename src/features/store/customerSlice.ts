@@ -1,9 +1,9 @@
 // store/slices/customerSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ContactInfo } from "@/features/type/type";
+import { CustomerData } from "@/features/type/type";
 
 interface CustomerState {
-  selectedCustomer: ContactInfo | null;
+  selectedCustomer: CustomerData | null;
 }
 
 const initialState: CustomerState = {
@@ -14,11 +14,16 @@ const customerSlice = createSlice({
   name: "customer",
   initialState,
   reducers: {
-    setCustomer: (state, action: PayloadAction<Partial<ContactInfo>>) => {
+    setCustomer: (state, action: PayloadAction<Partial<CustomerData>>) => {
       state.selectedCustomer = {
         ...state.selectedCustomer,
         ...action.payload,
-      } as ContactInfo;
+      } as CustomerData;
+    },
+    updateContactId: (state, action: PayloadAction<string>) => {
+      if (state.selectedCustomer) {
+        state.selectedCustomer.ContactId = action.payload;
+      }
     },
     clearCustomer: (state) => {
       state.selectedCustomer = null;
@@ -26,5 +31,6 @@ const customerSlice = createSlice({
   },
 });
 
-export const { setCustomer, clearCustomer } = customerSlice.actions;
+export const { setCustomer, updateContactId, clearCustomer } =
+  customerSlice.actions;
 export default customerSlice.reducer;

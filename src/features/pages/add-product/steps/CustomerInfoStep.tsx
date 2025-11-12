@@ -58,29 +58,29 @@ const CustomerInfoStep = () => {
       setValue("nationalCode", customer.NationalCode ?? "");
       setValue(
         "gender",
-        customer.Gender === 0 ? "مرد" : customer.Gender === 1 ? "زن" : ""
+        customer.Gender === 0 ? "زن" : customer.Gender === 1 ? "مرد" : ""
       );
 
-      if (provinces) {
-        const selectedProvince = provinces.find(
-          (p) => p.ProvinceName === customer.ProvinceName
-        );
-        setValue("province", selectedProvince?.Id?.toString() ?? "");
-      }
+      // if (provinces) {
+      //   const selectedProvince = provinces.find(
+      //     (p) => p.ProvinceName === customer.ProvinceName
+      //   );
+      //   setValue("province", selectedProvince?.Id?.toString() ?? "");
+      // }
 
-      if (cities && customer.CityName) {
-        const selectedCity = cities.find(
-          (c) => c.CityName === customer.CityName
-        );
-        setValue("city", selectedCity?.CityId?.toString() ?? "");
-      }
+      // if (cities && customer.CityName) {
+      //   const selectedCity = cities.find(
+      //     (c) => c.CityName === customer.CityName
+      //   );
+      //   setValue("city", selectedCity?.CityId?.toString() ?? "");
+      // }
 
-      if (regions && customer.RegionName) {
-        const selectedRegion = regions.find(
-          (r) => r.RegionName === customer.RegionName
-        );
-        setValue("region", selectedRegion?.RegionCrmId?.toString() ?? "");
-      }
+      // if (regions && customer.RegionName) {
+      //   const selectedRegion = regions.find(
+      //     (r) => r.RegionName === customer.RegionName
+      //   );
+      //   setValue("region", selectedRegion?.RegionCrmId?.toString() ?? "");
+      // }
 
       setValue("address", customer.Address ?? "");
       setValue("postalCode", customer.PostalCode ?? "");
